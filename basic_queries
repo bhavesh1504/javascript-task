@@ -1,0 +1,2719 @@
+    Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database vinit;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use vinit;
+Database changed
+mysql> create table purchases
+    -> (
+    -> id int not null,
+    -> name varchar(50),
+    -> email varchar(50),
+    -> mobile int
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc purchases;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   |     | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| email  | varchar(50) | YES  |     | NULL    |       |
+| mobile | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into purchases (id, name, email, mobile) values (1, 'vini', 'v@v.com', 999999999);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from purchases;
++----+------+---------+-----------+
+| id | name | email   | mobile    |
++----+------+---------+-----------+
+|  1 | vini | v@v.com | 999999999 |
++----+------+---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select email from purchases;
++---------+
+| email   |
++---------+
+| v@v.com |
++---------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| vinit              |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from purchases;
++----+------+---------+-----------+
+| id | name | email   | mobile    |
++----+------+---------+-----------+
+|  1 | vini | v@v.com | 999999999 |
++----+------+---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> help contents;
+You asked for help about help category: "Contents"
+For more information, type 'help <item>', where <item> is one of the following
+categories:
+   Account Management
+   Administration
+   Components
+   Compound Statements
+   Contents
+   Data Definition
+   Data Manipulation
+   Data Types
+   Functions
+   Geographic Features
+   Help Metadata
+   Language Structure
+   Loadable Functions
+   Plugins
+   Prepared Statements
+   Replication Statements
+   Storage Engines
+   Table Maintenance
+   Transactions
+   Utility
+
+mysql> help data manipulation
+You asked for help about help category: "Data Manipulation"
+For more information, type 'help <item>', where <item> is one of the following
+topics:
+   CALL
+   DELETE
+   DO
+   DUAL
+   HANDLER
+   IMPORT TABLE
+   INSERT
+   INSERT DELAYED
+   INSERT SELECT
+   JOIN
+   LOAD DATA
+   LOAD XML
+   PARENTHESIZED QUERY EXPRESSIONS
+   REPLACE
+   SELECT
+   TABLE
+   UNION
+   UPDATE
+   VALUES STATEMENT
+
+mysql> insert into purchases values (2, 'piyu', 'p@p.com', 88888888),(3, 'kunal', 'k@k.com', 66666666), (4,'tushar', 't@t.com', 555555555);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from purchases;
++----+--------+---------+-----------+
+| id | name   | email   | mobile    |
++----+--------+---------+-----------+
+|  1 | vini   | v@v.com | 999999999 |
+|  2 | piyu   | p@p.com |  88888888 |
+|  3 | kunal  | k@k.com |  66666666 |
+|  4 | tushar | t@t.com | 555555555 |
++----+--------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select mobile from purchases;
++-----------+
+| mobile    |
++-----------+
+| 999999999 |
+|  88888888 |
+|  66666666 |
+| 555555555 |
++-----------+
+4 rows in set (0.00 sec)
+
+mysql> select mobile from purchases limit 2;
++-----------+
+| mobile    |
++-----------+
+| 999999999 |
+|  88888888 |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql> select mobile from purchases limit 1,3;
++-----------+
+| mobile    |
++-----------+
+|  88888888 |
+|  66666666 |
+| 555555555 |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> select mobile from purchases limit 1,2;
++----------+
+| mobile   |
++----------+
+| 88888888 |
+| 66666666 |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> alter table purchases
+    -> add column address varchar(100);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from purchases;
++----+--------+---------+-----------+---------+
+| id | name   | email   | mobile    | address |
++----+--------+---------+-----------+---------+
+|  1 | vini   | v@v.com | 999999999 | NULL    |
+|  2 | piyu   | p@p.com |  88888888 | NULL    |
+|  3 | kunal  | k@k.com |  66666666 | NULL    |
+|  4 | tushar | t@t.com | 555555555 | NULL    |
++----+--------+---------+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> insert into purchases set address = 'sadubela school' where id = 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where id = 1' at line 1
+mysql> alter table purchases set address = 'sadubela school' where id = 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set address = 'sadubela school' where id = 1' at line 1
+mysql> insert into purchases values (5, 'sunanda', 's@s.com', 44444444444, 'lalchacki'), (6, 'pinky', 'p@p.com', 3333333, 'station road'), (7, 'venugopal' 'v@v.com', 111111111, 'sadubela school'), (8, 'heman', 'h@h.com', 22222222, 'saraswati apt');
+ERROR 1136 (21S01): Column count doesn't match value count at row 3
+mysql> insert into purchases values (5, 'sunanda', 's@s.com', 44444444444, 'lalchacki'), (6, 'pinky', 'p@p.com', 3333333, 'station road'), (7, 'venugopal' 'v@v.com', 111111111, 'sadubela school'), (8, 'heman', 'h@h.com', 22222222, 'saraswati apt');
+ERROR 1136 (21S01): Column count doesn't match value count at row 3
+mysql> desc purchases;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | NO   |     | NULL    |       |
+| name    | varchar(50)  | YES  |     | NULL    |       |
+| email   | varchar(50)  | YES  |     | NULL    |       |
+| mobile  | int          | YES  |     | NULL    |       |
+| address | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into purchases values (5, 'sunanda', 's@s.com', 44444444444, 'lalchacki'), (6, 'pinky', 'p@p.com', 3333333, 'station road'), (7, 'venugopal', 'v@v.com', 111111111, 'sadubela school'), (8, 'heman', 'h@h.com', 22222222, 'saraswati apt');
+ERROR 1264 (22003): Out of range value for column 'mobile' at row 1
+mysql> insert into purchases values (5, 'sunanda', 's@s.com', 444444, 'lalchacki'), (6, 'pinky', 'p@p.com', 3333333, 'station road'), (7, 'venugopal', 'v@v.com', 111111111, 'sadubela school'), (8, 'heman', 'h@h.com', 22222222, 'saraswati apt');
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from purchases;
++----+-----------+---------+-----------+-----------------+
+| id | name      | email   | mobile    | address         |
++----+-----------+---------+-----------+-----------------+
+|  1 | vini      | v@v.com | 999999999 | NULL            |
+|  2 | piyu      | p@p.com |  88888888 | NULL            |
+|  3 | kunal     | k@k.com |  66666666 | NULL            |
+|  4 | tushar    | t@t.com | 555555555 | NULL            |
+|  5 | sunanda   | s@s.com |    444444 | lalchacki       |
+|  6 | pinky     | p@p.com |   3333333 | station road    |
+|  7 | venugopal | v@v.com | 111111111 | sadubela school |
+|  8 | heman     | h@h.com |  22222222 | saraswati apt   |
++----+-----------+---------+-----------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> update purchases set address = 'ganga jamuna' where id = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from purchases;
++----+-----------+---------+-----------+-----------------+
+| id | name      | email   | mobile    | address         |
++----+-----------+---------+-----------+-----------------+
+|  1 | vini      | v@v.com | 999999999 | ganga jamuna    |
+|  2 | piyu      | p@p.com |  88888888 | NULL            |
+|  3 | kunal     | k@k.com |  66666666 | NULL            |
+|  4 | tushar    | t@t.com | 555555555 | NULL            |
+|  5 | sunanda   | s@s.com |    444444 | lalchacki       |
+|  6 | pinky     | p@p.com |   3333333 | station road    |
+|  7 | venugopal | v@v.com | 111111111 | sadubela school |
+|  8 | heman     | h@h.com |  22222222 | saraswati apt   |
++----+-----------+---------+-----------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> insert into purchases values ('moni', 'm@m.com', 565656565, 'church');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into purchases values (name, email, mobile, address),('moni', 'm@m.com', 565656565, 'church');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into purchases values (id, name, email, mobile, address),('moni', 'm@m.com', 565656565, 'church');
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+mysql> insert into purchases values (id, name, email, mobile, address),(8, 'moni', m@m.com', 565656565, 'church');
+    '> ^C
+mysql> insert into purchases values (id, name, email, mobile, address),(8, 'moni', m@m.com', 565656565, 'church');
+    '> insert into purchases values (id, name, email, mobile, address),(8, 'moni', m@m.com', 565656565, 'church');^C
+mysql> insert into purchases values (id, name, email, mobile, address),(8, 'moni', 'm@m.com', 565656565, 'church');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from purchases;
++----+-----------+---------+-----------+-----------------+
+| id | name      | email   | mobile    | address         |
++----+-----------+---------+-----------+-----------------+
+|  1 | vini      | v@v.com | 999999999 | ganga jamuna    |
+|  2 | piyu      | p@p.com |  88888888 | NULL            |
+|  3 | kunal     | k@k.com |  66666666 | NULL            |
+|  4 | tushar    | t@t.com | 555555555 | NULL            |
+|  5 | sunanda   | s@s.com |    444444 | lalchacki       |
+|  6 | pinky     | p@p.com |   3333333 | station road    |
+|  7 | venugopal | v@v.com | 111111111 | sadubela school |
+|  8 | heman     | h@h.com |  22222222 | saraswati apt   |
+|  0 | NULL      | NULL    |      NULL | NULL            |
+|  8 | moni      | m@m.com | 565656565 | church          |
++----+-----------+---------+-----------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> delete from purchases where id=0;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from purchases;
++----+-----------+---------+-----------+-----------------+
+| id | name      | email   | mobile    | address         |
++----+-----------+---------+-----------+-----------------+
+|  1 | vini      | v@v.com | 999999999 | ganga jamuna    |
+|  2 | piyu      | p@p.com |  88888888 | NULL            |
+|  3 | kunal     | k@k.com |  66666666 | NULL            |
+|  4 | tushar    | t@t.com | 555555555 | NULL            |
+|  5 | sunanda   | s@s.com |    444444 | lalchacki       |
+|  6 | pinky     | p@p.com |   3333333 | station road    |
+|  7 | venugopal | v@v.com | 111111111 | sadubela school |
+|  8 | heman     | h@h.com |  22222222 | saraswati apt   |
+|  8 | moni      | m@m.com | 565656565 | church          |
++----+-----------+---------+-----------+-----------------+
+9 rows in set (0.00 sec)
+
+mysql> create table employees;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table employees
+    -> (
+    -> empid int not null primary key,
+    -> empname varchar(50),
+    -> empaddress varchar(100),
+    -> empdob date,
+    -> empemail varchar(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 7
+mysql> create table employees
+    -> (
+    -> empid int not null primary key,
+    -> empname varchar(50),
+    -> empaddress varchar(100),
+    -> empdob date,
+    -> empsalary int
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables
+    -> ^C
+mysql> show tables;
++-----------------+
+| Tables_in_vinit |
++-----------------+
+| employees       |
+| purchases       |
++-----------------+
+2 rows in set (0.00 sec)
+
+mysql> create table employees
+    -> (
+    -> empid int not null primary key,
+    -> empname varchar(50),
+    -> empaddress varchar(100),
+    -> empdob date,
+    -> ^C
+mysql> insert into employees(empname,empaddress,empdob,empsalary) values('bhavesh','malbhar hill','2001-01-12',45000);
+ERROR 1364 (HY000): Field 'empid' doesn't have a default value
+mysql> insert into employees(empid,empname,empaddress,empdob,empsalary) values(102,'bhavesh','malbhar hill','2001-01-12',45000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employees;
++-------+---------+--------------+------------+-----------+
+| empid | empname | empaddress   | empdob     | empsalary |
++-------+---------+--------------+------------+-----------+
+|   102 | bhavesh | malbhar hill | 2001-01-12 |     45000 |
++-------+---------+--------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> alter table
+    -> ^C
+mysql> alter table employees
+    -> add constraint empid auto_increment
+    -> alter table employees
+    -> ^C
+mysql> alter table employees
+    -> add constraint empid auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increment' at line 2
+mysql> alter table employees
+    -> add constraint empid int auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int auto_increment' at line 2
+mysql> alter table employees
+    -> modify empid auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increment' at line 2
+mysql> alter table employees
+    -> modify empid int auto_increment;
+Query OK, 1 row affected (0.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> insert into employees(empid,empname,empaddress,empdob,empsalary) values(102,'bhavesh','malbhar hill','2001-01-12',45000);
+ERROR 1062 (23000): Duplicate entry '102' for key 'employees.PRIMARY'
+mysql> insert into employees(empname,empaddress,empdob,empsalary) values('bhavesh','malbhar hill','2001-01-12',45000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employees;
++-------+---------+--------------+------------+-----------+
+| empid | empname | empaddress   | empdob     | empsalary |
++-------+---------+--------------+------------+-----------+
+|   102 | bhavesh | malbhar hill | 2001-01-12 |     45000 |
+|   103 | bhavesh | malbhar hill | 2001-01-12 |     45000 |
++-------+---------+--------------+------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> alter table employees
+    -> modify empdob not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null' at line 2
+mysql> alter table employees
+    -> modify empdob varchar(10) not null;
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> alter table employees
+    -> modify empdob date not null;
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into employees(empname,empaddress,empsalary) values('bhavesh','malbhar hill',45000);
+ERROR 1364 (HY000): Field 'empdob' doesn't have a default value
+mysql> insert into employees(empname,empaddress,empdob,empsalary) values('bhavesh','malbhar hill','2001-01-12',45000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employees;
++-------+---------+--------------+------------+-----------+
+| empid | empname | empaddress   | empdob     | empsalary |
++-------+---------+--------------+------------+-----------+
+|   102 | bhavesh | malbhar hill | 2001-01-12 |     45000 |
+|   103 | bhavesh | malbhar hill | 2001-01-12 |     45000 |
+|   104 | bhavesh | malbhar hill | 2001-01-12 |     45000 |
++-------+---------+--------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employees
+    -> add column emphike decimal(10,2);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++-------+---------+--------------+------------+-----------+---------+
+| empid | empname | empaddress   | empdob     | empsalary | emphike |
++-------+---------+--------------+------------+-----------+---------+
+|   102 | bhavesh | malbhar hill | 2001-01-12 |     45000 |    NULL |
+|   103 | bhavesh | malbhar hill | 2001-01-12 |     45000 |    NULL |
+|   104 | bhavesh | malbhar hill | 2001-01-12 |     45000 |    NULL |
++-------+---------+--------------+------------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employees
+    -> set emphike=38900788908 where empid = 102;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set emphike=38900788908 where empid = 102' at line 2
+mysql> alter table employees
+    -> set emphike=3890078890 where empid = 102;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set emphike=3890078890 where empid = 102' at line 2
+mysql> alter table employees
+    -> set emphike=389.0078890 where empid = 102;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set emphike=389.0078890 where empid = 102' at line 2
+mysql> alter table employees
+    -> set emphike=38.90078890 where empid = 102;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set emphike=38.90078890 where empid = 102' at line 2
+mysql> alter table employees
+    -> set emphike=38900788.90 where empid = 102;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set emphike=38900788.90 where empid = 102' at line 2
+mysql> alter table employees
+    -> set emphike=38906078.89 where empid = 102;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set emphike=38906078.89 where empid = 102' at line 2
+mysql> alter table employees
+    -> set emphike = 10000000.00 where empid = 102;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set emphike = 10000000.00 where empid = 102' at line 2
+mysql> update employees
+    -> set emphike = 10000000.00 where empid = 102;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employees;
++-------+---------+--------------+------------+-----------+-------------+
+| empid | empname | empaddress   | empdob     | empsalary | emphike     |
++-------+---------+--------------+------------+-----------+-------------+
+|   102 | bhavesh | malbhar hill | 2001-01-12 |     45000 | 10000000.00 |
+|   103 | bhavesh | malbhar hill | 2001-01-12 |     45000 |        NULL |
+|   104 | bhavesh | malbhar hill | 2001-01-12 |     45000 |        NULL |
++-------+---------+--------------+------------+-----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> select database vinit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vinit' at line 1
+mysql> use vinit
+Database changed
+mysql> show tables
+    -> ^C
+mysql> show tables;
++-----------------+
+| Tables_in_vinit |
++-----------------+
+| cars            |
+| employees       |
+| purchases       |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from cars;
++-------+---------+----------+----------+--------------+
+| carid | carname | carmodel | carprice | carcondition |
++-------+---------+----------+----------+--------------+
+|     1 | tata    | nexon    |   450000 | new          |
+|     2 | audi    | a4       |   900000 | old          |
++-------+---------+----------+----------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table cas
+    -> ^C
+mysql> alter table cars
+    -> modify carmodel varchar(40) unique key;
+Query OK, 2 rows affected (0.07 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into cars values (bmw, nexon, 580000, old);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into cars values ('bmw', 'nexon', 580000, old);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into cars values ('bmw', 'nexon', 580000, 'old');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into cars values ('bmw', 'q1', 580000, 'old');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc cars'
+    '> ^C
+mysql> desc cars;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| carid        | int         | NO   | PRI | NULL    | auto_increment |
+| carname      | varchar(50) | YES  |     | NULL    |                |
+| carmodel     | varchar(40) | YES  | UNI | NULL    |                |
+| carprice     | int         | YES  |     | NULL    |                |
+| carcondition | varchar(50) | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into cars (carname,carmodel,carprice,carcondition) values ('bmw', 'q1', 580000, 'old');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into cars (carname,carmodel,carprice,carcondition) values ('maruti', 'q1', 80000, 'old');
+ERROR 1062 (23000): Duplicate entry 'q1' for key 'cars.carmodel'
+mysql> alter table cars
+    -> insert into cars (carname,carmodel,carprice,carcondition) values ('maruti', 'q1', 80000, 'old');^C
+mysql> update cars
+    -> add column carmobile int unique key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add column carmobile int unique key' at line 2
+mysql> update cars
+    -> add column carmobile int unique key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add column carmobile int unique key' at line 2
+mysql> alter table cars
+    -> add column carmobile int unique key;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from cars;
++-------+---------+----------+----------+--------------+-----------+
+| carid | carname | carmodel | carprice | carcondition | carmobile |
++-------+---------+----------+----------+--------------+-----------+
+|     1 | tata    | nexon    |   450000 | new          |      NULL |
+|     2 | audi    | a4       |   900000 | old          |      NULL |
+|     3 | bmw     | q1       |   580000 | old          |      NULL |
++-------+---------+----------+----------+--------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update cars
+    -> set carmobile = 8282 where carid = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from cars;
++-------+---------+----------+----------+--------------+-----------+
+| carid | carname | carmodel | carprice | carcondition | carmobile |
++-------+---------+----------+----------+--------------+-----------+
+|     1 | tata    | nexon    |   450000 | new          |      8282 |
+|     2 | audi    | a4       |   900000 | old          |      NULL |
+|     3 | bmw     | q1       |   580000 | old          |      NULL |
++-------+---------+----------+----------+--------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update cars
+    -> set carmobile = 1522 where carid = 2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update cars
+    -> set carmobile = 1311 where carid = 3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from cars;
++-------+---------+----------+----------+--------------+-----------+
+| carid | carname | carmodel | carprice | carcondition | carmobile |
++-------+---------+----------+----------+--------------+-----------+
+|     1 | tata    | nexon    |   450000 | new          |      8282 |
+|     2 | audi    | a4       |   900000 | old          |      1522 |
+|     3 | bmw     | q1       |   580000 | old          |      1311 |
++-------+---------+----------+----------+--------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> create table sales;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table sales
+    -> (
+    -> salesid int not null auto_increment primary key,
+    -> salesname varchar(50),
+    -> salesdob date unique,
+    -> salary int,
+    -> salesaddress varchar(50) unique key
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc table
+    -> ^C
+mysql> desc table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql>
+mysql> desc sales;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| salesid      | int         | NO   | PRI | NULL    | auto_increment |
+| salesname    | varchar(50) | YES  |     | NULL    |                |
+| salesdob     | date        | YES  | UNI | NULL    |                |
+| salary       | int         | YES  |     | NULL    |                |
+| salesaddress | varchar(50) | YES  | UNI | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table sales
+    -> add column salespoints int unique key;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc sales;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| salesid      | int         | NO   | PRI | NULL    | auto_increment |
+| salesname    | varchar(50) | YES  |     | NULL    |                |
+| salesdob     | date        | YES  | UNI | NULL    |                |
+| salary       | int         | YES  |     | NULL    |                |
+| salesaddress | varchar(50) | YES  | UNI | NULL    |                |
+| salespoints  | int         | YES  | UNI | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into (salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002/22/22', 9999999, 'sadubela school', 44);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002/22' at line 1
+mysql> insert into (salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002-22-22', 9999999, 'sadubela school', 44);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002-22' at line 1
+mysql> insert into (salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002/02/22', 9999999, 'sadubela school', 44);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002/02' at line 1
+mysql> insert into (salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002-02-22', 9999999, 'sadubela school', 44);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002-02' at line 1
+mysql> insert into sales(salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002-02-22', 9999999, 'sadubela school', 44);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> desc sales;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| salesid      | int         | NO   | PRI | NULL    | auto_increment |
+| salesname    | varchar(50) | YES  |     | NULL    |                |
+| salesdob     | date        | YES  | UNI | NULL    |                |
+| salary       | int         | YES  |     | NULL    |                |
+| salesaddress | varchar(50) | YES  | UNI | NULL    |                |
+| salespoints  | int         | YES  | UNI | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from sales;
++---------+-----------+------------+---------+-----------------+-------------+
+| salesid | salesname | salesdob   | salary  | salesaddress    | salespoints |
++---------+-----------+------------+---------+-----------------+-------------+
+|       1 | ddd       | 2002-02-22 | 9999999 | sadubela school |          44 |
++---------+-----------+------------+---------+-----------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> update sales
+    -> ^C
+mysql> update sales
+    -> modify salary decimal;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'salary decimal' at line 2
+mysql> update sales
+    -> ^C
+mysql> alter table sales
+    -> add column salarydot decimal;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table sales
+    -> add column salarydecimalmai decimal(10,2);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from sales;
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+| salesid | salesname | salesdob   | salary  | salesaddress    | salespoints | salarydot | salarydecimalmai |
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+|       1 | ddd       | 2002-02-22 | 9999999 | sadubela school |          44 |      NULL |             NULL |
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+1 row in set (0.00 sec)
+
+mysql> update sales
+    -> set salarydecimalmai = 88888888.22;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from sales;
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+| salesid | salesname | salesdob   | salary  | salesaddress    | salespoints | salarydot | salarydecimalmai |
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+|       1 | ddd       | 2002-02-22 | 9999999 | sadubela school |          44 |      NULL |      88888888.22 |
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+1 row in set (0.00 sec)
+
+mysql> select name as sulus_name from sales;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select name as sulusname_salesname from sales;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> selects salesname as sulusname from sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selects salesname as sulusname from sales' at line 1
+mysql> select salesname as sulusname from sales;
++-----------+
+| sulusname |
++-----------+
+| ddd       |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select salesdob "DOB people",salary sal ,salesaddress ,"add" from sales;
++------------+---------+-----------------+-----+
+| DOB people | sal     | salesaddress    | add |
++------------+---------+-----------------+-----+
+| 2002-02-22 | 9999999 | sadubela school | add |
++------------+---------+-----------------+-----+
+1 row in set (0.00 sec)
+
+mysql> select salespoints as points, salarydot "paise bindu", salarydecimalmai salarydecimal from sales;
++--------+-------------+---------------+
+| points | paise bindu | salarydecimal |
++--------+-------------+---------------+
+|     44 |        NULL |   88888888.22 |
++--------+-------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from sales;
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+| salesid | salesname | salesdob   | salary  | salesaddress    | salespoints | salarydot | salarydecimalmai |
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+|       1 | ddd       | 2002-02-22 | 9999999 | sadubela school |          44 |      NULL |      88888888.22 |
++---------+-----------+------------+---------+-----------------+-------------+-----------+------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into sales(salesname, salesdob, salary, salesaddress, salespoints) values ('ddd', '2002-02-15', 9999999, 'sadubell garden a school', 144);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sales;
++---------+-----------+------------+---------+--------------------------+-------------+-----------+------------------+
+| salesid | salesname | salesdob   | salary  | salesaddress             | salespoints | salarydot | salarydecimalmai |
++---------+-----------+------------+---------+--------------------------+-------------+-----------+------------------+
+|       1 | ddd       | 2002-02-22 | 9999999 | sadubela school          |          44 |      NULL |      88888888.22 |
+|       2 | ddd       | 2002-02-15 | 9999999 | sadubell garden a school |         144 |      NULL |             NULL |
++---------+-----------+------------+---------+--------------------------+-------------+-----------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct salesname from sales;
++-----------+
+| salesname |
++-----------+
+| ddd       |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> create table products;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table products
+    -> (
+    -> productsname varchar(50)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into products (productsname) values ('maggie'), ('honey'), ('milk'), ('soyachap'), ('nachos'), ('cake'), ('apples');
+Query OK, 7 rows affected (0.00 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from products;
++--------------+
+| productsname |
++--------------+
+| maggie       |
+| honey        |
+| milk         |
+| soyachap     |
+| nachos       |
+| cake         |
+| apples       |
++--------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table products
+    -> add column productsid int auto_increment primary key;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from products;
++--------------+------------+
+| productsname | productsid |
++--------------+------------+
+| maggie       |          1 |
+| honey        |          2 |
+| milk         |          3 |
+| soyachap     |          4 |
+| nachos       |          5 |
+| cake         |          6 |
+| apples       |          7 |
++--------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table products
+    -> modify productsid int after productsname'
+    '>
+    '> ^C
+mysql> alter table products
+    -> modify productsid int after productsname;
+Query OK, 7 rows affected (0.03 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from products;
++--------------+------------+
+| productsname | productsid |
++--------------+------------+
+| maggie       |          1 |
+| honey        |          2 |
+| milk         |          3 |
+| soyachap     |          4 |
+| nachos       |          5 |
+| cake         |          6 |
+| apples       |          7 |
++--------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table products
+    -> modify productsid int before productsname;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'before productsname' at line 2
+mysql> alter table products
+    -> add column product_no int after productsname;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from products;
++--------------+------------+------------+
+| productsname | product_no | productsid |
++--------------+------------+------------+
+| maggie       |       NULL |          1 |
+| honey        |       NULL |          2 |
+| milk         |       NULL |          3 |
+| soyachap     |       NULL |          4 |
+| nachos       |       NULL |          5 |
+| cake         |       NULL |          6 |
+| apples       |       NULL |          7 |
++--------------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table products
+    -> add column pro_serial int first;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from products;
++------------+--------------+------------+------------+
+| pro_serial | productsname | product_no | productsid |
++------------+--------------+------------+------------+
+|       NULL | maggie       |       NULL |          1 |
+|       NULL | honey        |       NULL |          2 |
+|       NULL | milk         |       NULL |          3 |
+|       NULL | soyachap     |       NULL |          4 |
+|       NULL | nachos       |       NULL |          5 |
+|       NULL | cake         |       NULL |          6 |
+|       NULL | apples       |       NULL |          7 |
++------------+--------------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> create table books;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table books
+    -> (
+    -> bookid int not null, primary key auto_increment
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> create table books
+    -> (
+    -> bookid int not null primary key auto_increment
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from books;
+Empty set (0.00 sec)
+
+mysql> insert into books (bookid) values (1),(2),(3),(4),(5),(6),(7);
+Query OK, 7 rows affected (0.00 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from books;
++--------+
+| bookid |
++--------+
+|      1 |
+|      2 |
+|      3 |
+|      4 |
+|      5 |
+|      6 |
+|      7 |
++--------+
+7 rows in set (0.00 sec)
+
+mysql> alter table books
+    -> add column bookname varchar(50) first;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from books;
++----------+--------+
+| bookname | bookid |
++----------+--------+
+| NULL     |      1 |
+| NULL     |      2 |
+| NULL     |      3 |
+| NULL     |      4 |
+| NULL     |      5 |
+| NULL     |      6 |
+| NULL     |      7 |
++----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> alter table books
+    -> add column booktitle varchar(50) after bookname;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from books;
++----------+-----------+--------+
+| bookname | booktitle | bookid |
++----------+-----------+--------+
+| NULL     | NULL      |      1 |
+| NULL     | NULL      |      2 |
+| NULL     | NULL      |      3 |
+| NULL     | NULL      |      4 |
+| NULL     | NULL      |      5 |
+| NULL     | NULL      |      6 |
+| NULL     | NULL      |      7 |
++----------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> update books
+    -> set bookname='fairy' and booktitle='you are fairy and princess too' where bookid=1;
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'fairy'
+mysql> set bookname='fairy' and booktitle='you are princess too' where bookid=1;
+ERROR 1193 (HY000): Unknown system variable 'bookname'
+mysql> set bookname='fairy' and booktitle='you are princess too' where bookid=1;
+ERROR 1193 (HY000): Unknown system variable 'bookname'
+mysql> update books
+    -> set bookname='fairy' and booktitle='you are fairy and princess too' where bookid=1;
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'fairy'
+mysql> update books
+    -> set bookname='fairy' and booktitle='you are  princess too' where bookid=1;
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'fairy'
+mysql> update books
+    -> set bookname='fairy' and booktitle='you are princess too' where bookid=1;
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'fairy'
+mysql> update books
+    -> set bookname='fairy' where bookid=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++----------+-----------+--------+
+| bookname | booktitle | bookid |
++----------+-----------+--------+
+| fairy    | NULL      |      1 |
+| NULL     | NULL      |      2 |
+| NULL     | NULL      |      3 |
+| NULL     | NULL      |      4 |
+| NULL     | NULL      |      5 |
+| NULL     | NULL      |      6 |
+| NULL     | NULL      |      7 |
++----------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql>
+
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use vinit
+Database changed
+mysql> show tables
+    -> ^C
+mysql> show tables;
++-----------------+
+| Tables_in_vinit |
++-----------------+
+| books           |
+| cars            |
+| employees       |
+| products        |
+| purchases       |
+| sales           |
++-----------------+
+6 rows in set (0.00 sec)
+
+mysql> create table employee2
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc employee2;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| eid   | int         | NO   | PRI | NULL    | auto_increment |
+| ename | varchar(30) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into employee2 (ename) values ('vini'),('piyu'),('pinky'),('sunanda');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee2;
++-----+---------+
+| eid | ename   |
++-----+---------+
+|   1 | vini    |
+|   2 | piyu    |
+|   3 | pinky   |
+|   4 | sunanda |
++-----+---------+
+4 rows in set (0.00 sec)
+
+mysql> create table department7
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> deptype varchar(30),
+    -> constraits emp_update,
+    -> foreign key (empid) references employee2 (eid)
+    -> on update cascade
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'emp_update,
+foreign key (empid) references employee2 (eid)
+on update cascade
+)' at line 6
+mysql> create table department7
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> deptype varchar(30),
+    -> constraits emp_update
+    -> ^C
+mysql> create table department7
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> deptype varchar(30),
+    -> constraint emp_update
+    -> foreign key (empid) references employee2 (eid)
+    -> on update cascade
+    -> );
+ERROR 1072 (42000): Key column 'empid' doesn't exist in table
+mysql> create table department7
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_update
+    -> foreign key (empid) references employee2 (eid)
+    -> on update cascade
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc department7
+    -> ^C
+mysql> desc department7;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| depid   | int         | NO   | PRI | NULL    | auto_increment |
+| depname | varchar(30) | YES  |     | NULL    |                |
+| empid   | int         | NO   | MUL | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc employee2;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| eid   | int         | NO   | PRI | NULL    | auto_increment |
+| ename | varchar(30) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> create table location
+    -> (
+    -> locid int not null auto_increment primary key,
+    -> locname varchar(50) not null,
+    -> empid int,
+    -> constraint fk_loc
+    -> foreign key(empid) references employee2(eid)
+    -> on update cascade
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc location;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| locid   | int         | NO   | PRI | NULL    | auto_increment |
+| locname | varchar(50) | NO   |     | NULL    |                |
+| empid   | int         | YES  | MUL | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> create table location1
+    -> (
+    -> locid int not null auto_increment primary key,
+    -> locname varchar(50) not null,
+    -> empid int,
+    -> constraint fk_loc
+    -> foreign key(empid) references employee2(eid)
+    -> );
+ERROR 1826 (HY000): Duplicate foreign key constraint name 'fk_loc'
+mysql> create table location1
+    -> (
+    -> locid int not null auto_increment primary key,
+    -> locname varchar(50) not null,
+    -> empid int,
+    -> constraint fk_loc1
+    -> foreign key(empid) references employee2(eid)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into location1 (locname, empid) values ('vini', 1), ('piyu', 2), ('pinky', 2), ('heman', 3), ('venu', 4);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> update location1
+    -> set empid = 10,
+    -> ^C
+mysql> update location1
+    -> set empid = 10 where empid = 2;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`vinit`.`location1`, CONSTRAINT `fk_loc1` FOREIGN KEY (`empid`) REFERENCES `employee2` (`eid`))
+mysql> update employee2
+    -> set eid=10
+    -> where eid=2;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`vinit`.`location1`, CONSTRAINT `fk_loc1` FOREIGN KEY (`empid`) REFERENCES `employee2` (`eid`))
+mysql> insert into department7 (depname, empid) values ('hrr', 2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> update employee2
+    -> set eid = 12 where eid = 2;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`vinit`.`location1`, CONSTRAINT `fk_loc1` FOREIGN KEY (`empid`) REFERENCES `employee2` (`eid`))
+mysql> ^C
+mysql>
+
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use vinit;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_vinit |
++-----------------+
+| books           |
+| cars            |
+| department7     |
+| employee2       |
+| employees       |
+| location        |
+| location1       |
+| products        |
+| purchases       |
+| sales           |
++-----------------+
+10 rows in set (0.01 sec)
+
+mysql> create table employee15
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc employee15;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| eid   | int         | NO   | PRI | NULL    | auto_increment |
+| ename | varchar(30) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from employee15;
+Empty set (0.00 sec)
+
+mysql> insert into employee15 (ename) values ('ram'),('sham'),('neel'),('nitin'),('mukesh');
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee15;
++-----+--------+
+| eid | ename  |
++-----+--------+
+|   1 | ram    |
+|   2 | sham   |
+|   3 | neel   |
+|   4 | nitin  |
+|   5 | mukesh |
++-----+--------+
+5 rows in set (0.00 sec)
+
+mysql> create table department15
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_update
+    -> foreign key (empid) reference employee15 (eid)
+    -> on update cascade
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference employee15 (eid)
+on update cascade
+)' at line 7
+mysql> create table department15
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_update
+    -> foreign key (empid) references employee15 (eid)
+    -> on update cascade
+    -> );
+ERROR 1826 (HY000): Duplicate foreign key constraint name 'emp_update'
+mysql> create table department15
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_fk_update
+    -> foreign key (empid) references employee15 (eid)
+    -> on update cascade
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc department15
+    -> ^C
+mysql> desc department15;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| depid   | int         | NO   | PRI | NULL    | auto_increment |
+| depname | varchar(30) | YES  |     | NULL    |                |
+| empid   | int         | NO   | MUL | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into (depname,empid) values ('om',1),('omkar',2),('jay',3),('ajay',4),('vijay',5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(depname,empid) values ('om',1),('omkar',2),('jay',3),('ajay',4),('vijay',5)' at line 1
+mysql> insert into department15 (depname,empid) values ('om',1),('omkar',2),('jay',3),('ajay',4),('vijay',5);
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from department15;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | om      |     1 |
+|     2 | omkar   |     2 |
+|     3 | jay     |     3 |
+|     4 | ajay    |     4 |
+|     5 | vijay   |     5 |
++-------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update employee15
+    -> set eid=12 where eid=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from department15;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | om      |     1 |
+|     2 | omkar   |    12 |
+|     3 | jay     |     3 |
+|     4 | ajay    |     4 |
+|     5 | vijay   |     5 |
++-------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee15;
++-----+--------+
+| eid | ename  |
++-----+--------+
+|   1 | ram    |
+|   3 | neel   |
+|   4 | nitin  |
+|   5 | mukesh |
+|  12 | sham   |
++-----+--------+
+5 rows in set (0.00 sec)
+
+mysql> create table employee22
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into (ename) values ('anuj'), ('vinay'), ('shreya'), ('neha'), ('nikki');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(ename) values ('anuj'), ('vinay'), ('shreya'), ('neha'), ('nikki')' at line 1
+mysql> insert into employee22 (ename) values ('anuj'), ('vinay'), ('shreya'), ('neha'), ('nikki');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> create table department22
+    -> (
+    -> depid int not null auto_increment primary key,
+    -> depname varchar(50),
+    -> empid int not null,
+    -> constraint emp_vp_update
+    -> foreign key (empid) references employee22 (eid)
+    -> on update set null
+    -> );
+ERROR 1830 (HY000): Column 'empid' cannot be NOT NULL: needed in a foreign key constraint 'emp_vp_update' SET NULL
+mysql> select * from employee22;
++-----+--------+
+| eid | ename  |
++-----+--------+
+|   1 | anuj   |
+|   2 | vinay  |
+|   3 | shreya |
+|   4 | neha   |
+|   5 | nikki  |
++-----+--------+
+5 rows in set (0.00 sec)
+
+mysql> create table department22
+    -> (
+    -> depid int not null auto_increment primary key,
+    -> depname varchar(50),
+    -> empid int,
+    -> constraint emp_vp_update
+    -> foreign key (empid) references employee22 (eid)
+    -> on update set null
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into department22 (depname, empid) values ('faizal',1),('heman',2),('pinky',3),('jayesh',4),('indu',5);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from department22;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | faizal  |     1 |
+|     2 | heman   |     2 |
+|     3 | pinky   |     3 |
+|     4 | jayesh  |     4 |
+|     5 | indu    |     5 |
++-------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update employee22
+    -> set eid = 10 where eid = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee22;
++-----+--------+
+| eid | ename  |
++-----+--------+
+|   1 | anuj   |
+|   3 | shreya |
+|   4 | neha   |
+|   5 | nikki  |
+|  10 | vinay  |
++-----+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from department22;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | faizal  |     1 |
+|     2 | heman   |  NULL |
+|     3 | pinky   |     3 |
+|     4 | jayesh  |     4 |
+|     5 | indu    |     5 |
++-------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table employee1522
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into employee1522 (ename) values ('deepak'),('nazim'),('rocky'),('hemant');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> create table department1522
+    -> (
+    -> depid int not null auto_increment primary key,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_bp_update
+    -> foreign key (empid) references employee1522 (eid)
+    -> on update restrict
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into department1522 (depname, empid) values ('sunanda',1),('kunal',2),('tushar',3)('moni',4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('moni',4)' at line 1
+mysql> insert into department1522 (depname, empid) values ('sunanda',1),('kunal',2),('tushar',3),('moni',4);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from department1522;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | sunanda |     1 |
+|     2 | kunal   |     2 |
+|     3 | tushar  |     3 |
+|     4 | moni    |     4 |
++-------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update employee1522
+    -> set eid = 10 where eid = 2;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`vinit`.`department1522`, CONSTRAINT `emp_bp_update` FOREIGN KEY (`empid`) REFERENCES `employee1522` (`eid`) ON UPDATE RESTRICT)
+mysql> select * from information_schema.table_constraints
+    -> where table_name = 'department1522';
++--------------------+-------------------+-----------------+--------------+----------------+-----------------+----------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME     | CONSTRAINT_TYPE | ENFORCED |
++--------------------+-------------------+-----------------+--------------+----------------+-----------------+----------+
+| def                | vinit             | PRIMARY         | vinit        | department1522 | PRIMARY KEY     | YES      |
+| def                | vinit             | emp_bp_update   | vinit        | department1522 | FOREIGN KEY     | YES      |
++--------------------+-------------------+-----------------+--------------+----------------+-----------------+----------+
+2 rows in set (0.01 sec)
+
+mysql> select * from information_schema.table_constraints
+    -> where table_name = 'department22';
++--------------------+-------------------+-----------------+--------------+--------------+-----------------+----------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME   | CONSTRAINT_TYPE | ENFORCED |
++--------------------+-------------------+-----------------+--------------+--------------+-----------------+----------+
+| def                | vinit             | PRIMARY         | vinit        | department22 | PRIMARY KEY     | YES      |
+| def                | vinit             | emp_vp_update   | vinit        | department22 | FOREIGN KEY     | YES      |
++--------------------+-------------------+-----------------+--------------+--------------+-----------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from information_schema.table_constraints
+    -> where table_name = 'department15';
++--------------------+-------------------+-----------------+--------------+--------------+-----------------+----------+
+| CONSTRAINT_CATALOG | CONSTRAINT_SCHEMA | CONSTRAINT_NAME | TABLE_SCHEMA | TABLE_NAME   | CONSTRAINT_TYPE | ENFORCED |
++--------------------+-------------------+-----------------+--------------+--------------+-----------------+----------+
+| def                | vinit             | PRIMARY         | vinit        | department15 | PRIMARY KEY     | YES      |
+| def                | vinit             | emp_fk_update   | vinit        | department15 | FOREIGN KEY     | YES      |
++--------------------+-------------------+-----------------+--------------+--------------+-----------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> create table emp1
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into emp1 (ename) values ('bha'), ('ve'), ('sh');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table dep1
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_bha_update
+    -> foreign key (empid) references emp1 (eid)
+    -> on delete cascade
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into dep1 (depname,empid) values ('pr',1),('iy',2),('aa',3);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from dep1;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | pr      |     1 |
+|     2 | iy      |     2 |
+|     3 | aa      |     3 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete emp1
+    -> where eid = 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where eid = 2' at line 2
+mysql> delete from emp1
+    -> where eid = 2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from emp1;
++-----+-------+
+| eid | ename |
++-----+-------+
+|   1 | bha   |
+|   3 | sh    |
++-----+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from dep1;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | pr      |     1 |
+|     3 | aa      |     3 |
++-------+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table emp2
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 5
+mysql> create table emp2
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 5
+mysql> create table emp2
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into emp2 (ename) values ('pr'),('iy'),('aa');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table dep2
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_ves_update
+    -> foreign key (empid) references emp2 (eid)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into dep2 (depname,empid) values ('bha',1),('ves',2),('hhh',3);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from dep2;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | bha     |     1 |
+|     2 | ves     |     2 |
+|     3 | hhh     |     3 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from emp2
+    -> where eid = 2;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`vinit`.`dep2`, CONSTRAINT `emp_ves_update` FOREIGN KEY (`empid`) REFERENCES `emp2` (`eid`))
+mysql> create table emp3
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into emp2 (ename) values ('tu'),('sh'),('ar');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table dep3
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_ves_update
+    -> foreign key (empid) references emp2 (eid)
+    -> on delete restrict
+    -> );
+ERROR 1826 (HY000): Duplicate foreign key constraint name 'emp_ves_update'
+mysql> create table dep3
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int not null,
+    -> constraint emp_sh_update
+    -> foreign key (empid) references emp2 (eid)
+    -> on delete restrict
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into dep2 (depname,empid) values ('pr',1),('iy',2),('aa',3);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from dep3
+    -> ^C
+mysql> select * from dep3;
+Empty set (0.00 sec)
+
+mysql> insert into dep3 (depname,empid) values ('pr',1),('iy',2),('aa',3);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from dep3;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | pr      |     1 |
+|     2 | iy      |     2 |
+|     3 | aa      |     3 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from emp2
+    -> where eid = 2;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`vinit`.`dep3`, CONSTRAINT `emp_sh_update` FOREIGN KEY (`empid`) REFERENCES `emp2` (`eid`) ON DELETE RESTRICT)
+mysql> create table emp4
+    -> (
+    -> eid int not null primary key auto_increment,
+    -> ename varchar(30)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into emp4 (ename) values ('su'),('nan'),('da');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table dep4
+    -> (
+    -> depid int not null primary key auto_increment,
+    -> depname varchar(30),
+    -> empid int,
+    -> constraint emp_piyu_update
+    -> foreign key (empid) references emp2 (eid)
+    -> on delete set null
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into dep3 (depname,empid) values ('ven',1),('ugo',2),('pal',3);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from dep4;
+Empty set (0.00 sec)
+
+mysql> insert into dep4 (depname,empid) values ('ven',1),('ugo',2),('pal',3);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from dep4;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | ven     |     1 |
+|     2 | ugo     |     2 |
+|     3 | pal     |     3 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from emp4
+    -> where eid = 2;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp4;
++-----+-------+
+| eid | ename |
++-----+-------+
+|   1 | su    |
+|   3 | da    |
++-----+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from dep4;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | ven     |     1 |
+|     2 | ugo     |     2 |
+|     3 | pal     |     3 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from dep3;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | pr      |     1 |
+|     2 | iy      |     2 |
+|     3 | aa      |     3 |
+|     4 | ven     |     1 |
+|     5 | ugo     |     2 |
+|     6 | pal     |     3 |
++-------+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from  emp4
+    -> ^C
+mysql> select * from  emp4;
++-----+-------+
+| eid | ename |
++-----+-------+
+|   1 | su    |
+|   3 | da    |
++-----+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from  dep4;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | ven     |     1 |
+|     2 | ugo     |     2 |
+|     3 | pal     |     3 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from emp4 where eid=1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp4;
++-----+-------+
+| eid | ename |
++-----+-------+
+|   3 | da    |
++-----+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from dep4;
++-------+---------+-------+
+| depid | depname | empid |
++-------+---------+-------+
+|     1 | ven     |     1 |
+|     2 | ugo     |     2 |
+|     3 | pal     |     3 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql>
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 28
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use vinit
+Database changed
+mysql> show tables
+    -> ^C
+mysql> show tables;
++-----------------+
+| Tables_in_vinit |
++-----------------+
+| books           |
+| cars            |
+| dep1            |
+| dep2            |
+| dep3            |
+| dep4            |
+| department15    |
+| department1522  |
+| department22    |
+| department7     |
+| emp1            |
+| emp2            |
+| emp3            |
+| emp4            |
+| employee15      |
+| employee1522    |
+| employee2       |
+| employee22      |
+| employees       |
+| location        |
+| location1       |
+| products        |
+| purchases       |
+| sales           |
++-----------------+
+24 rows in set (0.02 sec)
+
+mysql> select * from books;
++----------+-----------+--------+
+| bookname | booktitle | bookid |
++----------+-----------+--------+
+| fairy    | NULL      |      1 |
+| NULL     | NULL      |      2 |
+| NULL     | NULL      |      3 |
+| NULL     | NULL      |      4 |
+| NULL     | NULL      |      5 |
+| NULL     | NULL      |      6 |
+| NULL     | NULL      |      7 |
++----------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> update books set bookname='harry' ,booktitle ='know about amgic of science' where bookid=2;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>
+mysql> select * from books;
++----------+-----------------------------+--------+
+| bookname | booktitle                   | bookid |
++----------+-----------------------------+--------+
+| fairy    | NULL                        |      1 |
+| harry    | know about amgic of science |      2 |
+| NULL     | NULL                        |      3 |
+| NULL     | NULL                        |      4 |
+| NULL     | NULL                        |      5 |
+| NULL     | NULL                        |      6 |
+| NULL     | NULL                        |      7 |
++----------+-----------------------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> update books set bookname='ramayan', booktitle='legend of price ram' where bookid=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set bookname='hamunam', booktitle='shree ram mere seneme' where bookid=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set bookname='madhav', booktitle='jai shree krishna' where bookid=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set bookname='duniya', booktitle='lord shiva' where bookid=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set bookname='vinipiyu', booktitle='sacha pyaar' where bookid=6;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set bookname='sql', booktitle='all in one' where bookid=7;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set booktitle='fairy in my dreams' where bookid=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++----------+-----------------------------+--------+
+| bookname | booktitle                   | bookid |
++----------+-----------------------------+--------+
+| fairy    | fairy in my dreams          |      1 |
+| harry    | know about amgic of science |      2 |
+| hamunam  | shree ram mere seneme       |      3 |
+| madhav   | jai shree krishna           |      4 |
+| duniya   | lord shiva                  |      5 |
+| vinipiyu | sacha pyaar                 |      6 |
+| sql      | all in one                  |      7 |
++----------+-----------------------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> desc books;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| bookname  | varchar(50) | YES  |     | NULL    |                |
+| booktitle | varchar(50) | YES  |     | NULL    |                |
+| bookid    | int         | NO   | PRI | NULL    | auto_increment |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> update books
+    -> set pricetype =
+    -> case
+    -> when bookid<=7 and bookid>=2 then 'expensive'
+    -> when bookid=1 then 'expensive'
+    -> else 'fail'
+    -> end;
+ERROR 1054 (42S22): Unknown column 'pricetype' in 'field list'
+mysql> alter table books
+    -> add column pricetype varchar(50);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update books
+    -> set pricetype =
+    -> case
+    -> when bookid<=7 and bookid>=2 then 'expensive'
+    -> when bookid=1 then 'expensive'
+    -> else 'fail'
+    -> end;
+Query OK, 7 rows affected (0.00 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from books;
++----------+-----------------------------+--------+-----------+
+| bookname | booktitle                   | bookid | pricetype |
++----------+-----------------------------+--------+-----------+
+| fairy    | fairy in my dreams          |      1 | expensive |
+| harry    | know about amgic of science |      2 | expensive |
+| hamunam  | shree ram mere seneme       |      3 | expensive |
+| madhav   | jai shree krishna           |      4 | expensive |
+| duniya   | lord shiva                  |      5 | expensive |
+| vinipiyu | sacha pyaar                 |      6 | expensive |
+| sql      | all in one                  |      7 | expensive |
++----------+-----------------------------+--------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> update books
+    -> set pricetype =
+    -> case
+    -> when bookid<=7 and bookid>=2 then 'expensive'
+    -> when bookid=1 then 'cheap'
+    -> else 'fail'
+    -> end;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 7  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++----------+-----------------------------+--------+-----------+
+| bookname | booktitle                   | bookid | pricetype |
++----------+-----------------------------+--------+-----------+
+| fairy    | fairy in my dreams          |      1 | cheap     |
+| harry    | know about amgic of science |      2 | expensive |
+| hamunam  | shree ram mere seneme       |      3 | expensive |
+| madhav   | jai shree krishna           |      4 | expensive |
+| duniya   | lord shiva                  |      5 | expensive |
+| vinipiyu | sacha pyaar                 |      6 | expensive |
+| sql      | all in one                  |      7 | expensive |
++----------+-----------------------------+--------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> update books
+    -> set pricetype =
+    -> case
+    -> when bookid<=4 and bookid>=6 then 'expensive'
+    -> when bookid=5 then 'free'
+    -> else 'fail'
+    -> end;
+Query OK, 7 rows affected (0.00 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from books;
++----------+-----------------------------+--------+-----------+
+| bookname | booktitle                   | bookid | pricetype |
++----------+-----------------------------+--------+-----------+
+| fairy    | fairy in my dreams          |      1 | fail      |
+| harry    | know about amgic of science |      2 | fail      |
+| hamunam  | shree ram mere seneme       |      3 | fail      |
+| madhav   | jai shree krishna           |      4 | fail      |
+| duniya   | lord shiva                  |      5 | free      |
+| vinipiyu | sacha pyaar                 |      6 | fail      |
+| sql      | all in one                  |      7 | fail      |
++----------+-----------------------------+--------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> update books
+    -> set pricetype =
+    -> case
+    -> when bookid<=6 and bookid>=2 then 'expensive'
+    -> else 'fail'
+    -> end;
+Query OK, 5 rows affected (0.00 sec)
+Rows matched: 7  Changed: 5  Warnings: 0
+
+mysql> select * from books;
++----------+-----------------------------+--------+-----------+
+| bookname | booktitle                   | bookid | pricetype |
++----------+-----------------------------+--------+-----------+
+| fairy    | fairy in my dreams          |      1 | fail      |
+| harry    | know about amgic of science |      2 | expensive |
+| hamunam  | shree ram mere seneme       |      3 | expensive |
+| madhav   | jai shree krishna           |      4 | expensive |
+| duniya   | lord shiva                  |      5 | expensive |
+| vinipiyu | sacha pyaar                 |      6 | expensive |
+| sql      | all in one                  |      7 | fail      |
++----------+-----------------------------+--------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> select bookname from books
+    -> ^C
+mysql> select bookname from books;
++----------+
+| bookname |
++----------+
+| fairy    |
+| harry    |
+| hamunam  |
+| madhav   |
+| duniya   |
+| vinipiyu |
+| sql      |
++----------+
+7 rows in set (0.00 sec)
+
+mysql> select booktitle from books;
++-----------------------------+
+| booktitle                   |
++-----------------------------+
+| fairy in my dreams          |
+| know about amgic of science |
+| shree ram mere seneme       |
+| jai shree krishna           |
+| lord shiva                  |
+| sacha pyaar                 |
+| all in one                  |
++-----------------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * FROM BOOKS;
++----------+-----------------------------+--------+-----------+
+| bookname | booktitle                   | bookid | pricetype |
++----------+-----------------------------+--------+-----------+
+| fairy    | fairy in my dreams          |      1 | fail      |
+| harry    | know about amgic of science |      2 | expensive |
+| hamunam  | shree ram mere seneme       |      3 | expensive |
+| madhav   | jai shree krishna           |      4 | expensive |
+| duniya   | lord shiva                  |      5 | expensive |
+| vinipiyu | sacha pyaar                 |      6 | expensive |
+| sql      | all in one                  |      7 | fail      |
++----------+-----------------------------+--------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> desc books
+    -> desc books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc books' at line 2
+mysql> ^C
+mysql> desc books;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| bookname  | varchar(50) | YES  |     | NULL    |                |
+| booktitle | varchar(50) | YES  |     | NULL    |                |
+| bookid    | int         | NO   | PRI | NULL    | auto_increment |
+| pricetype | varchar(50) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> create table students
+    -> (
+    -> studentid int,
+    -> studentdob date,
+    -> studentname varchar(30)
+    -> studentdiv varchar(30)
+    -> studentrollno int
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'studentdiv varchar(30)
+studentrollno int
+)' at line 6
+mysql> create table students
+    -> (
+    -> studentid int,
+    -> studentdob date,
+    -> studentname varchar(30),
+    -> studentdiv varchar(30),
+    -> studentrollno int,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 8
+mysql> create table students
+    -> (
+    -> studentid int,
+    -> studentdob date,
+    -> studentname varchar(30),
+    -> studentdiv varchar(30),
+    -> studentrollno int
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc students;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| studentid     | int         | YES  |     | NULL    |       |
+| studentdob    | date        | YES  |     | NULL    |       |
+| studentname   | varchar(30) | YES  |     | NULL    |       |
+| studentdiv    | varchar(30) | YES  |     | NULL    |       |
+| studentrollno | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> create table students1
+    -> (
+    -> studentid int,
+    -> studentdob date,
+    -> studentname varchar(30),
+    -> studentdiv varchar(30),
+    -> studentrollno int,
+    -> primary key(studentid,studentrollno)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc students;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| studentid     | int         | YES  |     | NULL    |       |
+| studentdob    | date        | YES  |     | NULL    |       |
+| studentname   | varchar(30) | YES  |     | NULL    |       |
+| studentdiv    | varchar(30) | YES  |     | NULL    |       |
+| studentrollno | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc students1;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| studentid     | int         | NO   | PRI | NULL    |       |
+| studentdob    | date        | YES  |     | NULL    |       |
+| studentname   | varchar(30) | YES  |     | NULL    |       |
+| studentdiv    | varchar(30) | YES  |     | NULL    |       |
+| studentrollno | int         | NO   | PRI | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into (studentid,studentdob,studentname,studentdiv,studentrollno) values(1,'15-04-2001','bhavesh','A',15),(1,'14-04-2001','kunal','B',27),(2,'13-04-2004','dipesh','C',33),(2,'22-09-2009','omkar','D',55);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(studentid,studentdob,studentname,studentdiv,studentrollno) values(1,'15-04-2001' at line 1
+mysql> insert into students1 (studentid,studentdob,studentname,studentdiv,studentrollno) values(1,'15-04-2001','bhavesh','A',15),(1,'14-04-2001','kunal','B',27),(2,'13-04-2004','dipesh','C',33),(2,'22-09-2009','omkar','D',55);
+ERROR 1292 (22007): Incorrect date value: '15-04-2001' for column 'studentdob' at row 1
+mysql> insert into students1 (studentid,studentdob,studentname,studentdiv,studentrollno) values(1,'15/04/2001','bhavesh','A',15),(1,'14/04/2001','kunal','B',27),(2,'13/04/2004','dipesh','C',33),(2,'22/09/2009','omkar','D',55);
+ERROR 1292 (22007): Incorrect date value: '15/04/2001' for column 'studentdob' at row 1
+mysql> insert into students1 (studentid,studentdob,studentname,studentdiv,studentrollno) values(1,'2001/04/15','bhavesh','A',15),(1,'2001/04/20','kunal','B',27),(2,'2004/04/28','dipesh','C',33),(2,'2009/09/22','omkar','D',55);
+Query OK, 4 rows affected, 4 warnings (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 4
+
+mysql> select * from students1;
++-----------+------------+-------------+------------+---------------+
+| studentid | studentdob | studentname | studentdiv | studentrollno |
++-----------+------------+-------------+------------+---------------+
+|         1 | 2001-04-15 | bhavesh     | A          |            15 |
+|         1 | 2001-04-20 | kunal       | B          |            27 |
+|         2 | 2004-04-28 | dipesh      | C          |            33 |
+|         2 | 2009-09-22 | omkar       | D          |            55 |
++-----------+------------+-------------+------------+---------------+
+4 rows in set (0.00 sec)
+
+mysql>
+
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> ^C
+mysql> show databases;
+ERROR 2013 (HY000): Lost connection to MySQL server during query
+No connection. Trying to reconnect...
+Connection id:    34
+Current database: *** NONE ***
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| vinit              |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> use vinit
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_vinit |
++-----------------+
+| books           |
+| cars            |
+| dep1            |
+| dep2            |
+| dep3            |
+| dep4            |
+| department15    |
+| department1522  |
+| department22    |
+| department7     |
+| emp1            |
+| emp2            |
+| emp3            |
+| emp4            |
+| employee15      |
+| employee1522    |
+| employee2       |
+| employee22      |
+| employees       |
+| location        |
+| location1       |
+| products        |
+| purchases       |
+| sales           |
+| students        |
+| students1       |
++-----------------+
+26 rows in set (0.01 sec)
+
+mysql> desc products;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| pro_serial   | int         | YES  |     | NULL    |       |
+| productsname | varchar(50) | YES  |     | NULL    |       |
+| product_no   | int         | YES  |     | NULL    |       |
+| productsid   | int         | NO   | PRI | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from purchases;
++----+-----------+---------+-----------+-----------------+
+| id | name      | email   | mobile    | address         |
++----+-----------+---------+-----------+-----------------+
+|  1 | vini      | v@v.com | 999999999 | ganga jamuna    |
+|  2 | piyu      | p@p.com |  88888888 | NULL            |
+|  3 | kunal     | k@k.com |  66666666 | NULL            |
+|  4 | tushar    | t@t.com | 555555555 | NULL            |
+|  5 | sunanda   | s@s.com |    444444 | lalchacki       |
+|  6 | pinky     | p@p.com |   3333333 | station road    |
+|  7 | venugopal | v@v.com | 111111111 | sadubela school |
+|  8 | heman     | h@h.com |  22222222 | saraswati apt   |
+|  8 | moni      | m@m.com | 565656565 | church          |
++----+-----------+---------+-----------+-----------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from products;
++------------+--------------+------------+------------+
+| pro_serial | productsname | product_no | productsid |
++------------+--------------+------------+------------+
+|       NULL | maggie       |       NULL |          1 |
+|       NULL | honey        |       NULL |          2 |
+|       NULL | milk         |       NULL |          3 |
+|       NULL | soyachap     |       NULL |          4 |
+|       NULL | nachos       |       NULL |          5 |
+|       NULL | cake         |       NULL |          6 |
+|       NULL | apples       |       NULL |          7 |
++------------+--------------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_vinit |
++-----------------+
+| books           |
+| cars            |
+| dep1            |
+| dep2            |
+| dep3            |
+| dep4            |
+| department15    |
+| department1522  |
+| department22    |
+| department7     |
+| emp1            |
+| emp2            |
+| emp3            |
+| emp4            |
+| employee15      |
+| employee1522    |
+| employee2       |
+| employee22      |
+| employees       |
+| location        |
+| location1       |
+| products        |
+| purchases       |
+| sales           |
+| students        |
+| students1       |
++-----------------+
+26 rows in set (0.00 sec)
+
+mysql> create table items
+    -> (
+    -> itemid int not null primary key auto_increment,
+    -> itemname varchar(50),
+    -> itemmodel varchar(50),
+    -> itemprice decimal(10,2),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 7
+mysql> create table items
+    -> (
+    -> itemid int not null primary key auto_increment,
+    -> itemname varchar(50),
+    -> itemmodel varchar(50),
+    -> itemprice decimal(10,2) not null,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 7
+mysql> create table items
+    -> (
+    -> itemid int not null primary key auto_increment,
+    -> itemname varchar(50),
+    -> itemmodel varchar(50),
+    -> itemprice decimal(10,2) not null
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc items;
++-----------+---------------+------+-----+---------+----------------+
+| Field     | Type          | Null | Key | Default | Extra          |
++-----------+---------------+------+-----+---------+----------------+
+| itemid    | int           | NO   | PRI | NULL    | auto_increment |
+| itemname  | varchar(50)   | YES  |     | NULL    |                |
+| itemmodel | varchar(50)   | YES  |     | NULL    |                |
+| itemprice | decimal(10,2) | NO   |     | NULL    |                |
++-----------+---------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> insert into items (itemname, itemmodel, itemprice) values ('TV','Samsung',12345678.90),('Fridge', 'Whirlphool', 09876543.21), ('Oven', 'lg', 23456789.01), ('Washing Machine', 'Godrej', 98765432.01);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from items;
++--------+-----------------+------------+-------------+
+| itemid | itemname        | itemmodel  | itemprice   |
++--------+-----------------+------------+-------------+
+|      1 | TV              | Samsung    | 12345678.90 |
+|      2 | Fridge          | Whirlphool |  9876543.21 |
+|      3 | Oven            | lg         | 23456789.01 |
+|      4 | Washing Machine | Godrej     | 98765432.01 |
++--------+-----------------+------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * , round(itemprice,1) from items;
++--------+-----------------+------------+-------------+--------------------+
+| itemid | itemname        | itemmodel  | itemprice   | round(itemprice,1) |
++--------+-----------------+------------+-------------+--------------------+
+|      1 | TV              | Samsung    | 12345678.90 |         12345678.9 |
+|      2 | Fridge          | Whirlphool |  9876543.21 |          9876543.2 |
+|      3 | Oven            | lg         | 23456789.01 |         23456789.0 |
+|      4 | Washing Machine | Godrej     | 98765432.01 |         98765432.0 |
++--------+-----------------+------------+-------------+--------------------+
+4 rows in set (0.00 sec)
+
+mysql> select *,  round(sal
+    ->
+    -> ^C
+mysql> alter table items
+    -> change itemid item_id int(10) unique key;
+Query OK, 4 rows affected, 1 warning (0.06 sec)
+Records: 4  Duplicates: 0  Warnings: 1
+
+mysql> create table orders
+    -> (
+    -> orderId int(10) not null,
+    -> custId int(10) not null,
+    -> sellerId int(10) not null
+    -> );
+Query OK, 0 rows affected, 3 warnings (0.02 sec)
+
+mysql> alter table orders
+    -> change sellerId seller_Id int(10) unique key;
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> alter table orders
+    -> modify orderId int(10) auto_increment,
+    -> add primary key(orderId);
+Query OK, 0 rows affected, 1 warning (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> desc orders;
++-----------+------+------+-----+---------+----------------+
+| Field     | Type | Null | Key | Default | Extra          |
++-----------+------+------+-----+---------+----------------+
+| orderId   | int  | NO   | PRI | NULL    | auto_increment |
+| custId    | int  | NO   |     | NULL    |                |
+| seller_Id | int  | YES  | UNI | NULL    |                |
++-----------+------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into orders (custId, seller_Id) values(101,201),
+    -> (102,202),
+    -> (103,203),
+    -> (104,204),
+    -> (105,205),
+    -> (105,206),
+    -> (106,207),
+    -> (109,410);
+Query OK, 8 rows affected (0.00 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from orders;
++---------+--------+-----------+
+| orderId | custId | seller_Id |
++---------+--------+-----------+
+|       1 |    101 |       201 |
+|       2 |    102 |       202 |
+|       3 |    103 |       203 |
+|       4 |    104 |       204 |
+|       5 |    105 |       205 |
+|       6 |    105 |       206 |
+|       7 |    106 |       207 |
+|       8 |    109 |       410 |
++---------+--------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> select count(*) from orders;
++----------+
+| count(*) |
++----------+
+|        8 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(seller_id) from orders;
++------------------+
+| count(seller_id) |
++------------------+
+|                8 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(distinct custId) from orders where custId=101;
++------------------------+
+| count(distinct custId) |
++------------------------+
+|                      1 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(cust_Id) from orders where custId=101;
+ERROR 1054 (42S22): Unknown column 'cust_Id' in 'field list'
+mysql> select count(custId) from orders where custId=101;
++---------------+
+| count(custId) |
++---------------+
+|             1 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select count(custId) from orders where custId=105;
++---------------+
+| count(custId) |
++---------------+
+|             2 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from products
+    -> ^C
+mysql> select * from products;
++------------+--------------+------------+------------+
+| pro_serial | productsname | product_no | productsid |
++------------+--------------+------------+------------+
+|       NULL | maggie       |       NULL |          1 |
+|       NULL | honey        |       NULL |          2 |
+|       NULL | milk         |       NULL |          3 |
+|       NULL | soyachap     |       NULL |          4 |
+|       NULL | nachos       |       NULL |          5 |
+|       NULL | cake         |       NULL |          6 |
+|       NULL | apples       |       NULL |          7 |
++------------+--------------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select upper(productsname) from products;
++---------------------+
+| upper(productsname) |
++---------------------+
+| MAGGIE              |
+| HONEY               |
+| MILK                |
+| SOYACHAP            |
+| NACHOS              |
+| CAKE                |
+| APPLES              |
++---------------------+
+7 rows in set (0.00 sec)
+
+mysql> select upper(productsname) as name, productsid from products;
++----------+------------+
+| name     | productsid |
++----------+------------+
+| MAGGIE   |          1 |
+| HONEY    |          2 |
+| MILK     |          3 |
+| SOYACHAP |          4 |
+| NACHOS   |          5 |
+| CAKE     |          6 |
+| APPLES   |          7 |
++----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select lower(name) from product;
+ERROR 1146 (42S02): Table 'vinit.product' doesn't exist
+mysql> select lower(name) from products;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select lower(productsname) from products;
++---------------------+
+| lower(productsname) |
++---------------------+
+| maggie              |
+| honey               |
+| milk                |
+| soyachap            |
+| nachos              |
+| cake                |
+| apples              |
++---------------------+
+7 rows in set (0.00 sec)
+
+mysql> select ucase(productsname) as NAME, product_no from products;
++----------+------------+
+| NAME     | product_no |
++----------+------------+
+| MAGGIE   |       NULL |
+| HONEY    |       NULL |
+| MILK     |       NULL |
+| SOYACHAP |       NULL |
+| NACHOS   |       NULL |
+| CAKE     |       NULL |
+| APPLES   |       NULL |
++----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select mid(productsname,1,3) as shortname from products;
++-----------+
+| shortname |
++-----------+
+| mag       |
+| hon       |
+| mil       |
+| soy       |
+| nac       |
+| cak       |
+| app       |
++-----------+
+7 rows in set (0.00 sec)
+
+mysql> select substring(productsname,1,2) as shortname from products;
++-----------+
+| shortname |
++-----------+
+| ma        |
+| ho        |
+| mi        |
+| so        |
+| na        |
+| ca        |
+| ap        |
++-----------+
+7 rows in set (0.00 sec)
+
+mysql> select name, length(name) from products;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select productsname, length(name) from products;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select productsname, length(name) from products;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select productsname, length(productsname) from products;
++--------------+----------------------+
+| productsname | length(productsname) |
++--------------+----------------------+
+| maggie       |                    6 |
+| honey        |                    5 |
+| milk         |                    4 |
+| soyachap     |                    8 |
+| nachos       |                    6 |
+| cake         |                    4 |
+| apples       |                    6 |
++--------------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql> select productsname, concat(nameprice,price) from products;
+ERROR 1054 (42S22): Unknown column 'nameprice' in 'field list'
+mysql> select productsname, concat(p_productsname,price) from products;
+ERROR 1054 (42S22): Unknown column 'p_productsname' in 'field list'
+mysql> select productsname, concat(productidname,productid) from products;
+ERROR 1054 (42S22): Unknown column 'productidname' in 'field list'
+mysql> select productsname, concat(productsname,productid) from products;
+ERROR 1054 (42S22): Unknown column 'productid' in 'field list'
+mysql> select productsname, concat(p_productsname,productid) from products;
+ERROR 1054 (42S22): Unknown column 'p_productsname' in 'field list'
+mysql> select productsid, concat(productsname,product_no) from products;
++------------+---------------------------------+
+| productsid | concat(productsname,product_no) |
++------------+---------------------------------+
+|          1 | NULL                            |
+|          2 | NULL                            |
+|          3 | NULL                            |
+|          4 | NULL                            |
+|          5 | NULL                            |
+|          6 | NULL                            |
+|          7 | NULL                            |
++------------+---------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> coalesce(null,'bhavesh')t
+    ->
+    ->
+    -> ^C
+mysql> ^C
+mysql> select coalesce(product_no, '123') from products
+    ->
+    ->
+    ->
+    ->
+    ->
+    -> select coalesce(product_no, '123') from products;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select coalesce(product_no, '123') from products' at line 7
+mysql> select coalesce(productsname, '123') from products;
++-------------------------------+
+| coalesce(productsname, '123') |
++-------------------------------+
+| maggie                        |
+| honey                         |
+| milk                          |
+| soyachap                      |
+| nachos                        |
+| cake                          |
+| apples                        |
++-------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> update products set productsname = null where Id = 1;
+ERROR 1054 (42S22): Unknown column 'Id' in 'where clause'
+mysql> update products set productsname = null where productsid = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from producs
+    -> select * from products
+    ->
+    -> ^C
+mysql> ^C
+mysql> select * from products;
++------------+--------------+------------+------------+
+| pro_serial | productsname | product_no | productsid |
++------------+--------------+------------+------------+
+|       NULL | NULL         |       NULL |          1 |
+|       NULL | honey        |       NULL |          2 |
+|       NULL | milk         |       NULL |          3 |
+|       NULL | soyachap     |       NULL |          4 |
+|       NULL | nachos       |       NULL |          5 |
+|       NULL | cake         |       NULL |          6 |
+|       NULL | apples       |       NULL |          7 |
++------------+--------------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select coalesce(productsname, '234') from products;
++-------------------------------+
+| coalesce(productsname, '234') |
++-------------------------------+
+| 234                           |
+| honey                         |
+| milk                          |
+| soyachap                      |
+| nachos                        |
+| cake                          |
+| apples                        |
++-------------------------------+
+7 rows in set (0.00 sec)
+
+mysql>

@@ -1,5 +1,6 @@
 // let n , i = 0
 
+
 // while(i<=10){
 //   n = 5*i;
 //     console.log(n)
@@ -399,16 +400,302 @@
 // }
 // console.log(missing)
 
-const arr = [4, 56, 5, 3, 34, 37, 89, 57, 98];
-const sortWithReduce = arr => {
-   return arr.reduce((acc, val) => {
-      let ind = 0;
-      while(ind < arr.length && val < arr[ind]){
-         ind++;
-      }
-      acc.splice(ind, 0, val);
-      return acc;
-   }, []);
-};
-console.log(sortWithReduce(arr));
+// const arr = [4, 56, 5, 3, 34, 37, 89, 57, 98];
+// const sortWithReduce = arr => {
+//    return arr.reduce((acc, val) => {
+//       let ind = 0;
+//       while(ind < arr.length && val < arr[ind]){
+//          ind++;
+//       }
+//       acc.splice(ind, 0, val);
+//       return acc;
+//    }, []);
+// };
+// console.log(sortWithReduce(arr));
+
+// let n, i = 0;
+// while(i<=10){
+//    n = i*10;
+//    i++;
+//    console.log(n)
+// }
+// let n, i=0;
+// do{
+//    n = i*5;
+//    i++;
+//    console.log(n)
+
+// }
+// function facto (){
+// let fact = 1;
+// for (let i = 1; i<=fact; i++){
+//    fact*=i;
+// }
+// return
+// }
+// console.log(fact);
+
+// facto(7);
+
+
+
+
+// while(i<=10)
+// function hello(number){
+// if(number < 0) {
+//    console.log('error')
+// }
+
+// else if(number === 0) {   
+//    console.log('error')
+// }
+
+//   else {
+//    let fact = 1;
+//    for(i = 1; i<=number;i++){
+//       fact *=i;
+//    }
+//    console.log('correct')
+//    return fact;
+
+// }
+// }
+// console.log(hello(5));
+
+
+// function fact(n){
+//    let fa
+// } 
+// let n,i=0
+// do {
+//    n = 10*i;
+//    i++;
+//    console.log(n)
+// }
+
+// while(i<=10)
+
+// let a = 10;
+// let b = 20;
+// [a,b] = [b,a];
+
+// console.log(`the value of a is ${a} and the value of b is ${b}` );
+
+// let n;
+
+// for(let i = 0; i<=100; i++){
+//    let flag = 0;
+//    for(let j = 2; j<=i/2; j++){
+//       if(i%j == 0){
+//          flag=1;
+//          break;
+//       }
+//    }
+   
+//    if (flag == 0) {
+//       console.log(i);
+//    }
+// }
+   
+
+
+// function isPrime(n){
+//    if(n==1||n==0){
+//    return false;
+//    }
+//    {
+//    for(let i=2;i<=100;i++){
+//     if(n%i==0) return false
+
+//     return true;
+
+//    }
+
+//    }
+//    console.log(i);
+// }
+// isPrime();
+
+
+
+// let a = 5;
+// let b = 7;
+// let temp;
+
+// if(temp = a){
+//    console.log(temp);
+// }
+// if(a = b){
+//    console.log(a);
+// }
+// if (b = temp){
+//    console.log(b);
+// }
+
+// console.log(a,b);
+
+
+// let str='Priya'
+// let rev=''
+// for(i=str.length-1;i>=0;i--){
+//     rev +=str[i]
+// }
+// if(str==rev){
+// console.log('palindrome');
+// }else{
+//    console.log('not a palindrome');
+// }
+// function palindrome(str){
+//    var sp = str.split("");
+//    var fp = sp.reverse();
+//    var gp = fp.join("");
+//    if(str==gp){
+//       console.log('palindrome');
+// }else{
+//    console.log('not a palindrome');
+// }
+// }
+
+// palindrome('bha');
+
+// let a = 'bhavesh';
+// let rev = '';
+
+// for(i=a.length-1;i<=0;i--){
+//    rev = rev+a[i]
+// }
+// if(a==rev){
+//     console.log('palindrome');
+//     }else{
+//        console.log('not a palindrome');
+//  }
+
+
+// const people = [
+//    {
+//       name: 'bhavesh',
+//       age: 21
+//    },
+//    {
+//       name: 'jay',
+//       age: 24
+//    },
+//    {
+//       name: 'suraj',
+//       age: 21
+//    },
+//    {
+//       name: 'omkar',
+//       age: 22
+//    }
+// ]
+
+// const obj = people.find(member=>member.name === "bhavesh")
+// console.log(obj.age)
+
+
+// let a = 'kartikey';
+// let rev = '';
+
+// for(i=a.length-1; i>=0; i--){
+//    rev=rev+a[i];
+// }
+
+// console.log('Reverse',rev.toUpperCase());
+
+// let x = [1,2,3];
+// let y = []
+
+// for(let i=x.length-1; i>=0; i--){
+//    y.push(x[i]);
+// }
+
+// console.log(y);
+
+// let arr1 = [1,2];
+// let arr2 = [2,6,12];
+// let result = []
+
+// let x = 0;
+// let y = 0;
+
+// while (x < arr1.length && x < arr2.length)
+// {
+//    result.push(arr1[x]+arr2[x]);
+//    x++;
+// }
+
+// if (x == arr1.length)
+// {
+//    for(y = x; x < arr2.length; x++)
+//    {
+//       result.push(arr2[x]);
+//    }
+// }
+// else {
+//    for(y = x; x < arr1.length; x++)
+//    {
+//       result.push(arr1[x])
+//    }
+// }
+
+// console.log(result)
+
+
+
+// let a = [1,2,3,4];
+// let b = [5,6,7];
+
+// let sum = [];
+
+// for(let i = 0; i < Math.max(a.length,b.length); i++)
+// {
+
+//    sum.push((a[i] || 0) + ( b[i]) || 0);
+// }
+
+// console.log(sum);
+
+
+// const data = [0, 1, false, 2, undefined, '', 3, null]
+
+// const arr = data.filter(e=> e || e === 0)
+
+// console.log(arr);
+
+
+// const data = [['a', 1], ['b', 2]];
+//console.log(Object.fromEntries(data));
+// const result = [];
+
+// const obj = (data)=>(data).reduce((acc,value)=>{
+//    if(Array.isArray(value)) {
+//       acc[value[0]= value[1]];
+//    }
+//    console.log(acc)
+// })
+
+// [{a:1},{b:2}]
+// const a=data.split['[',']']
+// console.log(a)
+
+// let num=32244;
+function reverse(num){
+let a=''
+for(let i = num.length-1;i>=0;i--)
+
+a=a+num[i]
+
+   //a = a+i
+   
+   //return a
+
+
+
+}
+console.log(reverse(12345))
+
+
+
+
 
