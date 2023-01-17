@@ -680,11 +680,11 @@
 // console.log(a)
 
 // let num=32244;
-function reverse(num){
-let a=''
-for(let i = num.length-1;i>=0;i--)
+// function reverse(num){
+// let a=''
+// for(let i = num.length-1;i>=0;i--)
 
-a=a+num[i]
+// a=a+num[i]
 
    //a = a+i
    
@@ -692,8 +692,22 @@ a=a+num[i]
 
 
 
-}
-console.log(reverse(12345))
+// }
+// console.log(reverse(12345))
+
+
+// let arr = [1, 2, 3, 4, 5];
+// let firstElement = arr[0];
+// let lastElement = arr[arr.length-1];
+// console.log(firstElement);
+// console.log(lastElement);
+
+let arr = [1, 2, 3, 4, 5];
+let firstElement = arr.shift();
+let lastElement = arr.pop();
+console.log(firstElement);
+console.log(lastElement);
+
 
 
 
