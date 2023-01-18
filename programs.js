@@ -702,12 +702,27 @@
 // console.log(firstElement);
 // console.log(lastElement);
 
-let arr = [1, 2, 3, 4, 5];
-let firstElement = arr.shift();
-let lastElement = arr.pop();
-console.log(firstElement);
-console.log(lastElement);
+// let arr = [1, 2, 3, 4, 5];
+// let firstElement = arr.shift();
+// let lastElement = arr.pop();
+// console.log(firstElement);
+// console.log(lastElement);
 
+function addDashBetweenEvenDigits(num) {
+   const str = num.toString(); 
+   let result = "";
+   
+   for (let i = 0; i < str.length; i++) {
+     if (parseInt(str[i]) % 2 === 0 && parseInt(str[i + 1]) % 2 === 0) {
+       result += str[i] + "-";
+     } else {
+       result += str[i];
+     }
+   }
+   return result;
+ }
+ console.log(addDashBetweenEvenDigits(9987823122456));
+ 
 
 
 
