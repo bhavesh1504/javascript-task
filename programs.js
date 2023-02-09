@@ -679,21 +679,21 @@
 // const a=data.split['[',']']
 // console.log(a)
 
-// let num=32244;
-// function reverse(num){
-// let a=''
-// for(let i = num.length-1;i>=0;i--)
+let num=32244;
+function reverse(num){
+let a=''
+for(let i = num.length-1;i>=0;i--)
 
-// a=a+num[i]
+a=a+num[i]
 
-   //a = a+i
+   a = a+i
    
-   //return a
+   return a
 
 
 
-// }
-// console.log(reverse(12345))
+}
+console.log(reverse(12345))
 
 
 // let arr = [1, 2, 3, 4, 5];
@@ -708,22 +708,37 @@
 // console.log(firstElement);
 // console.log(lastElement);
 
-function addDashBetweenEvenDigits(num) {
-   const str = num.toString(); 
-   let result = "";
+// function addDashBetweenEvenDigits(num) {
+//    const str = num.toString(); 
+//    let result = "";
    
-   for (let i = 0; i < str.length; i++) {
-     if (parseInt(str[i]) % 2 === 0 && parseInt(str[i + 1]) % 2 === 0) {
-       result += str[i] + "-";
-     } else {
-       result += str[i];
-     }
-   }
-   return result;
- }
- console.log(addDashBetweenEvenDigits(9987823122456));
+//    for (let i = 0; i < str.length; i++) {
+//      if (parseInt(str[i]) % 2 === 0 && parseInt(str[i + 1]) % 2 === 0) {
+//        result += str[i] + "-";
+//      } else {
+//        result += str[i];
+//      }
+//    }
+//    return result;
+//  }
+//  console.log(addDashBetweenEvenDigits(9987823122456));
  
 
+// const arr = ['a','b','c','d'];
+// let obj = arr.reduce((acc,cur,index)=>({...acc,[index]:cur}),{})
+// console.log(obj);
+
+
+// function mutiple(num){
+// return num*3;
+// }
+// console.log(mutiple(7))
+
+// function currentDate(){
+// var today = new Date();   
+// return today;
+// }
+// console.log(currentDate())
 
 
 
